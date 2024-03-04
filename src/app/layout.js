@@ -1,7 +1,7 @@
-import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Nav from "../../components/nav";
+import Header from "../../components/header";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,8 +10,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html className="h-full w-full bg-blue-50">
+      <body className="flex flex-row justify-between w-full h-full">
+        <Suspense>
+          <Nav></Nav>
+        </Suspense>
+        <div className="flex flex-col flex-grow">
+          <Header></Header>
+          <div className="border flex-grow">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
